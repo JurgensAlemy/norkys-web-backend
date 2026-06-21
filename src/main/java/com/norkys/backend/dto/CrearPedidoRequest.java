@@ -6,6 +6,11 @@ import java.util.List;
 public class CrearPedidoRequest {
     private Long usuarioId;
     private String direccionEntrega;
+
+    // ===== NUEVO =====
+    // "Efectivo" | "Yape" | "Plin" | "Tarjeta"
+    private String metodoPago;
+
     private List<ItemPedido> items;
 
     @Data

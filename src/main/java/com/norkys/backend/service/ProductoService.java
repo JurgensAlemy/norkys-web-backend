@@ -41,11 +41,11 @@ public class ProductoService {
         existente.setCategoria(datos.getCategoria());
         existente.setImgUrl(datos.getImgUrl());
         existente.setActivo(datos.getActivo());
+        existente.setStock(datos.getStock()); // ← NUEVO
         return productoRepository.save(existente);
     }
 
     public void eliminar(Long id) {
-        // Soft delete: solo desactiva
         Producto producto = obtenerPorId(id);
         producto.setActivo(false);
         productoRepository.save(producto);

@@ -30,11 +30,18 @@ public class Producto {
 
     @NotBlank(message = "La categoría es obligatoria")
     @Column(nullable = false)
-    private String categoria;  // pollos, parrillas, combos, hamburguesas, bebidas, postres, porciones
+    private String categoria;
 
     private String imgUrl;
 
     @Column(nullable = false)
     @Builder.Default
     private Boolean activo = true;
+
+    // ===== NUEVO: control de stock =====
+    @NotNull(message = "El stock es obligatorio")
+    @Min(value = 0, message = "El stock no puede ser negativo")
+    @Column(nullable = false)
+    @Builder.Default
+    private Integer stock = 0;
 }

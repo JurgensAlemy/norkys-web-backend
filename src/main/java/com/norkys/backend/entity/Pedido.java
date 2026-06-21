@@ -32,6 +32,12 @@ public class Pedido {
 
     private String direccionEntrega;
 
+    // ===== NUEVO: método de pago elegido en el checkout =====
+    // Valores esperados: "Efectivo", "Yape", "Plin", "Tarjeta"
+    @Column(nullable = false)
+    @Builder.Default
+    private String metodoPago = "Efectivo";
+
     @Column(nullable = false)
     private Double total;
 
