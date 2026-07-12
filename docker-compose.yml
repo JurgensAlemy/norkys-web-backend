@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: norkys-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: norkys
+      POSTGRES_USER: norkys_user
+      POSTGRES_PASSWORD: norkys_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - norkys_pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: norkys-backend
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/norkys
+      SPRING_DATASOURCE_USERNAME: norkys_user
+      SPRING_DATASOURCE_PASSWORD: norkys_pass
+    ports:
+      - "8080:8080"
+
+volumes:
+  norkys_pgdata:
